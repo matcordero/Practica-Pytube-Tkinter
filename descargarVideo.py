@@ -2,6 +2,7 @@ from tkinter import Grid, StringVar, Tk,Frame,Button,messagebox,Label,Entry
 from pytube import exceptions,YouTube
 import urllib.request
 from PIL import Image, ImageTk
+import os
 
 #Variables Globales
 global colorOscuro
@@ -84,13 +85,15 @@ class VentantaVideoInformacion(Frame):
             Grid.columnconfigure(self, y, weight=1)
 
     def mostrar_imagen(self):
-        file="miniatura.jpg"
+        nombre="miniatura.jpg"
+        file="\miniatura.jpg"
         link_jpg=self.video.thumbnail_url
         r=urllib.request.urlopen(link_jpg)
-        f=open(file,"wb")
+        f=open(nombre,"wb")
         f.write(r.read())
         f.close()
-        load = Image.open(r"C:\\Users\\Mati\\Desktop\\Practica Python\\miniatura.jpg")
+        direccion=os.getcwd()+file
+        load = Image.open(direccion)
         load = load.resize((300,200), Image.ANTIALIAS)
         render = ImageTk.PhotoImage(load,master=self.f1)
         img = Label(self.f1,image=render)
