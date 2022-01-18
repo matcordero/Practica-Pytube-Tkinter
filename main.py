@@ -16,21 +16,21 @@ class ventana1(Frame):
         self.pack(expand=True,fill="both")
         self.views()
     def views(self):
-        self.f1=Frame(self,height=400,width=400,bg="red")
+        self.f1=Frame(self,bg="red")
         self.f1.grid(row=0,column=0,sticky='nsew')
 
-        self.f2=Frame(self,height=400,width=400,bg="green")
+        self.f2=Frame(self,bg="green")
         self.f2.grid(row=0,column=1,sticky='nsew')
 
         self.elementos()
 
-        self.f3=Frame(self,height=400,width=400,bg="blue")
+        self.f3=Frame(self,bg="blue")
         self.f3.grid(row=1,column=0,sticky='nsew')
 
-        self.f4=Frame(self,height=400,width=400,bg="black")
-        self.f4.grid(row=1,column=1,sticky='nsew')
+        self.f4=Frame(self,bg="black")
+        self.f4.grid(row=1,column=1,sticky='nsew',columnspan=2,rowspan=2)
 
-        for x in range(0,2):
+        for x in range(0,3):
             self.grid_rowconfigure(x,minsize=400,weight=1)
             self.grid_columnconfigure(x,minsize=400,weight=1)
             """Grid.columnconfigure(self,x,weight=1)
