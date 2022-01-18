@@ -1,5 +1,4 @@
-from re import S
-from tkinter import Tk,Label,Button,Frame
+from tkinter import Tk,Label,Button,Frame,Grid
 
 
 """def cambiar_panel(master):
@@ -12,37 +11,41 @@ def botonFrame(master=None):
 
 class ventana1(Frame):
     def __init__(self,master=None):
-        super().__init__(master,width=800,height=800,bg="orange")
+        super().__init__(master,bg="orange")
         self.master=master
         self.pack(expand=True,fill="both")
         self.views()
     def views(self):
         self.f1=Frame(self,height=400,width=400,bg="red")
-        self.f1.grid(row=0,column=0)
+        self.f1.grid(row=0,column=0,sticky='nsew')
 
         self.f2=Frame(self,height=400,width=400,bg="green")
-        self.f2.grid(row=0,column=1)
+        self.f2.grid(row=0,column=1,sticky='nsew')
 
-        self.elementos(self.f2)
+        self.elementos()
 
         self.f3=Frame(self,height=400,width=400,bg="blue")
-        self.f3.grid(row=1,column=0)
+        self.f3.grid(row=1,column=0,sticky='nsew')
 
         self.f4=Frame(self,height=400,width=400,bg="black")
-        self.f4.grid(row=1,column=1)
+        self.f4.grid(row=1,column=1,sticky='nsew')
 
-        for x in range(2):
-            self.columnconfigure(x,weight=1)
-            self.rowconfigure(x,weight=1)
-    def elementos(self,master):
-        self.boton=Button(master,text="tocar",height=3,width=20,command=lambda:self.cambiar_blanco())
-        self.boton.pack()
+        for x in range(0,2):
+            self.grid_rowconfigure(x,minsize=400,weight=1)
+            self.grid_columnconfigure(x,minsize=400,weight=1)
+            """Grid.columnconfigure(self,x,weight=1)
+            Grid.rowconfigure(self,x,weight=1)"""
+    def elementos(self):
+        boton=Button(self.f2,text="tocar",command=lambda:self.cambiar_blanco())
+        boton.pack(padx=200,pady=200)
     def cambiar_blanco(self):
+        self.f1.destroy()
         self.f5=Frame(self,height=400,width=400,bg="white")
-        self.f5.grid(row=0,column=0)
+        self.f5.grid(row=0,column=0,sticky="nsew")
 
 if __name__=="__main__":
     root=Tk()
+    root.minsize(800,800)
     ventana=ventana1(root)
     ventana.mainloop()
     
