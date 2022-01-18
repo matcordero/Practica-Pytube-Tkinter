@@ -86,13 +86,12 @@ class VentantaVideoInformacion(Frame):
 
     def mostrar_imagen(self):
         nombre="miniatura.jpg"
-        file="\miniatura.jpg"
         link_jpg=self.video.thumbnail_url
         r=urllib.request.urlopen(link_jpg)
         f=open(nombre,"wb")
         f.write(r.read())
         f.close()
-        direccion=os.getcwd()+file
+        direccion=os.getcwd()+"\\"+nombre
         load = Image.open(direccion)
         load = load.resize((300,200), Image.ANTIALIAS)
         render = ImageTk.PhotoImage(load,master=self.f1)
